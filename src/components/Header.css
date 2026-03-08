@@ -1,0 +1,374 @@
+.header {
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  /* Align header content with global page container */
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+.desktop-nav {
+  display: flex;
+  gap: 2rem;
+  flex: 1;
+  justify-content: center;
+  margin: 0 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  white-space: nowrap;
+  padding: 0.5rem 0;
+}
+
+.nav-link:hover {
+  color: var(--color-primary);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.search-container {
+  position: relative;
+  flex: 1;
+  max-width: 400px;
+  margin: 0 1rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 40px 10px 15px;
+  border: 2px solid #e5e7eb;
+  border-radius: 25px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: var(--color-primary);
+}
+
+.search-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  size: 20px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.action-icon {
+  color: #374151;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.action-icon:hover {
+  color: #2563eb;
+}
+
+.cart-icon,
+.favorites-icon {
+  position: relative;
+}
+
+.user-name {
+  font-size: 0.85rem;
+  margin-left: 0.25rem;
+  color: #6b7280;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.action-icon button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 20px;
+  cursor: pointer;
+  color: #374151;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logout-btn:hover {
+  background-color: #f3f4f6;
+  color: #2563eb;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ef4444;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.mobile-menu-btn {
+  background: none;
+  border: none;
+  color: #374151;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+  position: relative;
+  flex-shrink: 0;
+  min-width: 40px;
+  min-height: 40px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-menu-btn svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* Mobile menu button visibility handled in mobile media query below */
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-top: 1px solid #e5e7eb;
+  padding: 1rem 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Hide mobile nav on desktop */
+@media (min-width: 768px) {
+  .mobile-nav {
+    display: none !important;
+  }
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 20px;
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.mobile-nav-link:hover {
+  background-color: #f3f4f6;
+  color: #2563eb;
+}
+
+/* Tablet Styles */
+@media (max-width: 1024px) {
+  .desktop-nav {
+    gap: 1.5rem;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+  }
+
+  .search-container {
+    max-width: 300px;
+  }
+}
+
+/* Mobile Styles - Starting from 300px */
+@media (max-width: 767px) {
+  .desktop-nav {
+    display: none !important;
+  }
+
+  .mobile-menu-btn {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .search-container {
+    display: none;
+  }
+
+  .header-container {
+    padding: 0 12px;
+    height: 70px;
+    max-width: 100%;
+    flex-wrap: nowrap;
+  }
+
+  .logo {
+    flex-shrink: 0;
+    min-width: 0;
+  }
+
+  .logo-image {
+    height: 40px;
+    max-width: 100%;
+  }
+
+  .header-actions {
+    gap: 0.5rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+  }
+
+  .user-name {
+    display: none;
+  }
+
+  .action-icon {
+    padding: 4px;
+    flex-shrink: 0;
+    min-width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .action-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .mobile-menu-btn {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  .mobile-nav {
+    display: flex !important;
+  }
+}
+
+/* Extra Small Mobile (300px - 374px) */
+@media (max-width: 374px) {
+  .header-container {
+    padding: 0 8px;
+    height: 65px;
+  }
+
+  .logo-image {
+    height: 35px;
+  }
+
+  .header-actions {
+    gap: 0.25rem;
+  }
+
+  .action-icon {
+    padding: 3px;
+  }
+
+  .action-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .user-name {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    min-width: 36px;
+    min-height: 36px;
+    padding: 6px;
+  }
+
+  .mobile-menu-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+}

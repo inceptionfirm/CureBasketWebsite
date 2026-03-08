@@ -1,0 +1,240 @@
+/* How to Order – same width as About, clean steps */
+.how-to-order-page {
+  min-height: 100vh;
+  width: 100%;
+  background: #fff;
+  padding: 2.5rem 0 4rem;
+  box-sizing: border-box;
+}
+
+.how-to-order-container {
+  width: 94%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+.how-to-order-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.how-to-order-title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: var(--color-text-primary, #1a1a1a);
+  margin: 0 0 1rem;
+  line-height: 1.25;
+}
+
+.how-to-order-intro {
+  font-size: 1.05rem;
+  color: var(--color-text-secondary, #555);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 56rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Order options (Order online / Contact us) */
+.how-to-order-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 600px) {
+  .how-to-order-options {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.how-to-order-option {
+  padding: 1.25rem 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.how-to-order-option.primary {
+  background: linear-gradient(135deg, rgba(1, 113, 115, 0.08) 0%, rgba(1, 149, 146, 0.06) 100%);
+  border-color: var(--color-primary, #017173);
+}
+
+.how-to-order-option-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary, #017173);
+  margin-bottom: 0.5rem;
+}
+
+.how-to-order-option p {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary, #555);
+  margin: 0 0 0.75rem;
+  line-height: 1.5;
+}
+
+.how-to-order-option-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-primary, #017173);
+  text-decoration: none;
+}
+
+.how-to-order-option-link:hover {
+  text-decoration: underline;
+}
+
+/* Steps */
+.how-to-order-steps-heading {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-text-primary, #1a1a1a);
+  margin: 0 0 1.5rem;
+}
+
+.how-to-order-steps {
+  margin-bottom: 3rem;
+}
+
+.how-to-order-step {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.how-to-order-step:last-of-type {
+  border-bottom: none;
+}
+
+.how-to-order-step-number {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.how-to-order-step-num {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary, #017173);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 50%;
+}
+
+.how-to-order-step-icon {
+  color: var(--color-primary, #017173);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.how-to-order-step-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.how-to-order-step-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-text-primary, #1a1a1a);
+  margin: 0 0 0.5rem;
+  line-height: 1.3;
+}
+
+.how-to-order-step-desc {
+  font-size: 0.98rem;
+  color: var(--color-text-secondary, #555);
+  line-height: 1.6;
+  margin: 0 0 0.75rem;
+}
+
+.how-to-order-step-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-primary, #017173);
+  text-decoration: none;
+}
+
+.how-to-order-step-cta:hover {
+  text-decoration: underline;
+}
+
+/* CTA section */
+.how-to-order-cta {
+  background: var(--color-bg-secondary, #f8f9fa);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.how-to-order-cta-inner {
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+.how-to-order-cta-icon {
+  color: var(--color-primary, #017173);
+  margin-bottom: 0.75rem;
+}
+
+.how-to-order-cta-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-text-primary, #1a1a1a);
+  margin: 0 0 0.5rem;
+}
+
+.how-to-order-cta-desc {
+  font-size: 1rem;
+  color: var(--color-text-secondary, #555);
+  line-height: 1.5;
+  margin: 0 0 1.25rem;
+}
+
+.how-to-order-cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.how-to-order-cta-btn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.65rem 1.25rem;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--color-primary, #017173);
+  color: var(--color-primary, #017173);
+}
+
+.btn-outline:hover {
+  background: rgba(1, 113, 115, 0.08);
+}

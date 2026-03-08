@@ -1,0 +1,4 @@
+/* Terms page uses same legal layout as Privacy (Privacy.css); optional overrides */
+.terms-page .legal-content section:last-child {
+  margin-bottom: 0;
+}

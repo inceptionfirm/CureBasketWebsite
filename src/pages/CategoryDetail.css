@@ -1,0 +1,143 @@
+.category-detail-page {
+  padding: 2rem 0 4rem;
+  min-height: 60vh;
+  background: #fff;
+}
+
+.category-detail-page .container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.category-detail-page .detail-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-primary, #0f766e);
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.category-detail-page .detail-back-link:hover {
+  text-decoration: underline;
+}
+
+.category-detail-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.category-detail-filter-label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+.category-detail-select {
+  min-width: 220px;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  color: #1f2937;
+  cursor: pointer;
+}
+
+.category-detail-select:focus {
+  outline: none;
+  border-color: var(--color-primary, #0f766e);
+  box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.2);
+}
+
+.category-detail-medicines {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.category-detail-medicines-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 1.25rem 0;
+}
+
+.category-detail-page .detail-error {
+  color: #dc2626;
+  margin-bottom: 1rem;
+}
+
+.category-detail-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.category-detail-image-wrap {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f9fafb;
+  aspect-ratio: 16 / 9;
+  max-width: 500px;
+}
+
+.category-detail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.category-detail-content {
+  min-width: 0;
+}
+
+.category-detail-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 1rem 0;
+  line-height: 1.3;
+}
+
+.category-detail-description {
+  font-size: 1.05rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+.category-detail-status,
+.category-detail-meta {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin: 0 0 0.5rem 0;
+}
+
+.category-detail-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  .category-detail-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  .category-detail-title {
+    font-size: 2.25rem;
+  }
+}

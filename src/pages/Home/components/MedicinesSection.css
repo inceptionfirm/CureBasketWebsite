@@ -1,0 +1,141 @@
+/* Mobile First - Starting from 320px */
+.medicines-section {
+  padding: 1.5rem 0;
+  background: white;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #8b4513;
+  margin-bottom: 0.375rem;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
+  padding: 0 0.5rem;
+}
+
+.section-subtitle {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-bottom: 1.25rem;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
+  padding: 0 0.5rem;
+}
+
+.loading-state,
+.empty-state {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+/* Small Mobile (375px - 479px) */
+@media (min-width: 375px) {
+  .medicines-section {
+    padding: 1.75rem 0;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.875rem;
+  }
+}
+
+/* Medium Mobile (480px - 599px) */
+@media (min-width: 480px) {
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.9375rem;
+  }
+
+  .loading-state,
+  .empty-state {
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* Large Mobile (600px - 767px) */
+@media (min-width: 600px) {
+  .medicines-section {
+    padding: 2rem 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) {
+  .medicines-section {
+    padding: 3rem 0;
+  }
+
+  .section-title {
+    font-size: 2.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .loading-state,
+  .empty-state {
+    padding: 3rem;
+    font-size: 1rem;
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  .section-title {
+    font-size: 2.5rem;
+  }
+}
+
+/* Home: 6 medicines in 3 columns (two rows), full container width */
+@media (min-width: 768px) {
+  .medicines-section .medicine-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .medicines-section .medicine-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .medicines-section .medicine-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 100%;
+  }
+}

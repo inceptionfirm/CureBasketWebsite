@@ -1,0 +1,439 @@
+/* Medicine Card Styles - Compact width, clear alignment */
+.medicine-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.medicine-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Grid View */
+.medicine-card.grid-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.medicine-card.grid-view .medicine-image {
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  flex-shrink: 0;
+  background: #f3f4f6;
+  box-sizing: border-box;
+}
+
+.medicine-card.grid-view .medicine-image img {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.medicine-card.grid-view:hover .medicine-image img {
+  transform: scale(1.05);
+}
+
+/* List View */
+.medicine-card.list-view {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  gap: 1.5rem;
+}
+
+.medicine-card.list-view .medicine-image {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-radius: 8px;
+}
+
+.medicine-card.list-view .medicine-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.medicine-card.list-view .medicine-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.medicine-card.list-view .medicine-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.medicine-card.list-view .medicine-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.medicine-card.list-view .medicine-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Common Styles */
+.medicine-image {
+  position: relative;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #FF8C42;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.out-of-stock-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  z-index: 2;
+}
+
+.medicine-info {
+  padding: 1rem 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.medicine-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.medicine-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0;
+  line-height: 1.35;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.medicine-type {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.medicine-meta {
+  color: #6B7280;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  margin: 0 0 0.35rem 0;
+}
+
+.medicine-meta-sep {
+  margin: 0 0.2rem;
+}
+
+.medicine-meta-prescription {
+  font-weight: 500;
+}
+
+.medicine-description {
+  color: #6B7280;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.medicine-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  color: #d1d5db;
+  font-size: 0.9rem;
+}
+
+.star.filled {
+  color: #fbbf24;
+}
+
+.rating-text {
+  font-size: 0.85rem;
+  color: #6B7280;
+}
+
+.medicine-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.current-price {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.original-price {
+  font-size: 1rem;
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+
+.medicine-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.medicine-actions.grid-actions {
+  flex-direction: column;
+  width: 100%;
+}
+
+.view-details-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  min-height: 40px;
+  background: transparent;
+  color: var(--color-primary, #0f766e);
+  border: 1px solid var(--color-primary, #0f766e);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  box-sizing: border-box;
+  white-space: nowrap;
+  width: 100%;
+  transition: background 0.2s, color 0.2s;
+}
+
+.view-details-btn:hover {
+  background: var(--color-primary, #0f766e);
+  color: #fff;
+}
+
+.medicine-actions .add-to-cart-btn {
+  flex: 1;
+  min-width: 0;
+}
+
+.medicine-actions.grid-actions .view-details-btn,
+.medicine-actions.grid-actions .add-to-cart-btn {
+  width: 100%;
+}
+
+.add-to-cart-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  min-height: 40px;
+  background: #FF8C42;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.add-to-cart-btn:hover:not(.disabled) {
+  background: #FF6B35;
+  transform: translateY(-2px);
+}
+
+.add-to-cart-btn.disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Prescription Required Styles */
+.medicine-card.prescription-required {
+  border-left: 4px solid #DC2626;
+}
+
+.medicine-card.prescription-required .medicine-type {
+  color: #DC2626;
+}
+
+/* OTC Styles */
+.medicine-card.otc {
+  border-left: 4px solid #059669;
+}
+
+.medicine-card.otc .medicine-type {
+  color: #059669;
+}
+
+/* Supplement Styles */
+.medicine-card.supplement {
+  border-left: 4px solid #7C3AED;
+}
+
+.medicine-card.supplement .medicine-type {
+  color: #7C3AED;
+}
+
+/* Equipment Styles */
+.medicine-card.equipment {
+  border-left: 4px solid #0891B2;
+}
+
+.medicine-card.equipment .medicine-type {
+  color: #0891B2;
+}
+
+/* Small Mobile (375px - 479px) */
+@media (min-width: 375px) {
+  .medicine-card.grid-view .medicine-image {
+    height: 200px;
+  }
+
+  .medicine-info {
+    padding: 1.25rem;
+  }
+
+  .medicine-name {
+    font-size: 1.05rem;
+  }
+
+  .add-to-cart-btn {
+    padding: 11px 14px;
+    font-size: 0.92rem;
+  }
+}
+
+/* Medium Mobile (480px - 599px) */
+@media (min-width: 480px) {
+  .medicine-card.grid-view .medicine-image {
+    height: 200px;
+  }
+
+  .medicine-info {
+    padding: 1.5rem;
+  }
+
+  .medicine-name {
+    font-size: 1.1rem;
+  }
+
+  .add-to-cart-btn {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Tablet (768px+) – constrain card width for grid alignment */
+@media (min-width: 768px) {
+  .medicine-card {
+    max-width: 280px;
+  }
+
+  .medicine-card.grid-view .medicine-image {
+    height: 200px;
+  }
+
+  .medicine-card.list-view {
+    flex-direction: row;
+    text-align: left;
+    gap: 1.5rem;
+  }
+  
+  .medicine-card.list-view .medicine-image {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .medicine-card.list-view .medicine-header {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .medicine-card.list-view .medicine-details {
+    flex-direction: row;
+    gap: 1rem;
+  }
+  
+  .medicine-card.list-view .medicine-actions {
+    justify-content: flex-end;
+  }
+}

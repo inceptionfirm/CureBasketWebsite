@@ -1,0 +1,611 @@
+/* Prescription Upload Modal Styles */
+.prescription-upload-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.prescription-upload-modal {
+  background: #ffffff;
+  border-radius: 16px;
+  width: 90vw;
+  max-width: 560px;
+  max-height: 90vh;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.prescription-upload-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #E5E7EB;
+  flex-shrink: 0;
+  background: #FAFAFA;
+}
+
+.prescription-upload-modal .modal-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #6B7280;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  background: #F3F4F6;
+  color: #374151;
+}
+
+.prescription-upload-modal .modal-body,
+.prescription-upload-modal .modal-content {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  background: #ffffff;
+}
+
+/* Form Section */
+.prescription-upload-modal .form-section {
+  margin-bottom: 28px;
+}
+
+.prescription-upload-modal .form-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.prescription-upload-modal .form-section h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #E5E7EB;
+  letter-spacing: -0.01em;
+}
+
+/* Form Fields Grid - 2 columns desktop, 1 column mobile */
+.form-fields-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* Form Fields - 2 Column Grid Desktop, 1 Column Mobile */
+.form-group {
+  margin-bottom: 0;
+}
+
+.prescription-upload-modal .form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.form-label .required {
+  color: #EF4444;
+  margin-left: 4px;
+}
+
+.form-label .optional {
+  color: #9CA3AF;
+  font-weight: 400;
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  height: 44px;
+  padding: 12px 16px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #ffffff;
+  color: #1A1A1A;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #9CA3AF;
+}
+
+.form-textarea {
+  height: auto;
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Ensure inputs are always white with black text inside the modal */
+.prescription-upload-modal .form-input,
+.prescription-upload-modal .form-textarea,
+.prescription-upload-modal input,
+.prescription-upload-modal textarea {
+  background: #ffffff !important;
+  color: #1A1A1A !important;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #017173;
+  box-shadow: 0 0 0 3px rgba(1, 113, 115, 0.1);
+}
+
+.form-input.error,
+.form-textarea.error {
+  border-color: #EF4444;
+}
+
+
+.error-message {
+  display: block;
+  color: #EF4444;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  border-radius: 8px;
+  color: #DC2626;
+  font-size: 14px;
+  margin-top: 12px;
+}
+
+.upload-instructions {
+  background: #F8FAFC;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.instruction-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #374151;
+}
+
+.instruction-item:last-child {
+  margin-bottom: 0;
+}
+
+.instruction-item svg {
+  color: #0F766E;
+  flex-shrink: 0;
+}
+
+.upload-area {
+  border: 2px dashed #0F766E;
+  border-radius: 12px;
+  padding: 48px 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  background: #F0FDFA;
+  width: 100%;
+}
+
+.upload-area:hover,
+.upload-area.drag-active {
+  border-color: #0F766E;
+  background: #ECFEFF;
+}
+
+.upload-area.error {
+  border-color: #EF4444;
+  background: #FEF2F2;
+}
+
+.upload-area--disabled {
+  pointer-events: none;
+  opacity: 0.65;
+  background: #F3F4F6;
+  border-color: #D1D5DB;
+  cursor: not-allowed;
+}
+
+.upload-area--disabled .upload-label {
+  cursor: not-allowed;
+}
+
+.upload-section-disabled .upload-area {
+  cursor: not-allowed;
+}
+
+.upload-disabled-hint {
+  color: #92400E;
+  font-size: 0.875rem;
+  margin: 0 0 12px 0;
+  padding: 10px 14px;
+  background: #FFFBEB;
+  border-radius: 8px;
+  border: 1px solid #FDE68A;
+}
+
+.file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.upload-label svg {
+  color: #0F766E;
+}
+
+.upload-label h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #374151;
+  margin: 0;
+}
+
+.upload-label p {
+  color: #6B7280;
+  margin: 0;
+  font-size: 13px;
+}
+
+.uploaded-files {
+  margin-top: 16px;
+}
+
+.uploaded-files h4 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 12px;
+}
+
+.files-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background: #F8FAFC;
+  border-radius: 8px;
+  border: 1px solid #E5E7EB;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.file-info svg {
+  color: #0F766E;
+  flex-shrink: 0;
+}
+
+.file-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.file-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.file-size {
+  font-size: 12px;
+  color: #6B7280;
+}
+
+.remove-file-btn {
+  background: none;
+  border: none;
+  color: #EF4444;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-file-btn:hover {
+  background: #FEE2E2;
+}
+
+.prescription-upload-modal .modal-footer {
+  position: sticky;
+  bottom: 0;
+  background: #FAFAFA;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid #E5E7EB;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  height: 44px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-size: 14px;
+  white-space: nowrap;
+  min-width: 120px;
+}
+
+.btn-primary {
+  background: #017173;
+  color: white;
+  box-shadow: 0 4px 12px rgba(1, 113, 115, 0.2);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #015A5C;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(1, 113, 115, 0.3);
+}
+
+.btn-primary:disabled {
+  background: #9CA3AF;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #374151;
+  border: 1px solid #D1D5DB;
+}
+
+.btn-secondary:hover {
+  background: #F3F4F6;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .form-fields-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  .form-group.full-width {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 767px) {
+  .prescription-upload-overlay {
+    padding: 8px;
+  }
+
+  .prescription-upload-modal {
+    max-height: 95vh;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .modal-header,
+  .modal-body,
+  .modal-content {
+    padding: 16px;
+  }
+
+  .modal-footer {
+    padding: 16px;
+    flex-direction: column;
+  }
+
+  .upload-area {
+    padding: 32px 16px;
+  }
+
+  .upload-label h3 {
+    font-size: 14px;
+  }
+
+  .btn {
+    width: 100%;
+    min-width: 100%;
+  }
+}
+
+/* Small Mobile (480px - 599px) */
+@media (max-width: 599px) {
+  .prescription-upload-overlay {
+    padding: 6px;
+  }
+
+  .modal-header,
+  .modal-body,
+  .modal-content {
+    padding: 14px;
+  }
+
+  .modal-header h2 {
+    font-size: 18px;
+  }
+
+  .form-section h3 {
+    font-size: 18px;
+  }
+
+  .upload-area {
+    padding: 24px 12px;
+  }
+}
+
+/* Extra Small Mobile (300px - 479px) */
+@media (max-width: 479px) {
+  .prescription-upload-overlay {
+    padding: 4px;
+  }
+
+  .prescription-upload-modal {
+    max-height: 98vh;
+    border-radius: 10px;
+  }
+
+  .modal-header,
+  .modal-body,
+  .modal-content {
+    padding: 12px;
+  }
+
+  .modal-header h2 {
+    font-size: 16px;
+  }
+
+  .form-section {
+    margin-bottom: 20px;
+  }
+
+  .form-section h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .form-fields-grid {
+    gap: 12px;
+  }
+
+  .form-label {
+    font-size: 12px;
+  }
+
+  .form-input,
+  .form-textarea {
+    height: 40px;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .form-textarea {
+    min-height: 80px;
+  }
+
+  .upload-area {
+    padding: 20px 10px;
+  }
+
+  .upload-label svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .upload-label h3 {
+    font-size: 13px;
+  }
+
+  .upload-label p {
+    font-size: 12px;
+  }
+
+  .upload-instructions {
+    padding: 12px;
+  }
+
+  .instruction-item {
+    font-size: 12px;
+  }
+
+  .modal-footer {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .btn {
+    height: 40px;
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 374px) {
+  .modal-header h2 {
+    font-size: 15px;
+  }
+
+  .form-input,
+  .form-textarea {
+    height: 38px;
+    font-size: 12px;
+  }
+
+  .upload-area {
+    padding: 16px 8px;
+  }
+
+  .btn {
+    height: 38px;
+    font-size: 11px;
+  }
+}

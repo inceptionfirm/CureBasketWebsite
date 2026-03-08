@@ -1,0 +1,128 @@
+/* Reviews Section - Cure Basket customer reviews */
+.reviews-section {
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  padding: 2.5rem 0;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.reviews-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  box-sizing: border-box;
+}
+
+.reviews-section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.5rem;
+  text-align: center;
+}
+
+.reviews-section-subtitle {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin: 0 0 1.5rem;
+  text-align: center;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.review-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+
+.review-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15, 118, 110, 0.1);
+}
+
+.review-quote-icon {
+  color: #0f766e;
+  opacity: 0.4;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.review-rating {
+  display: flex;
+  gap: 0.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.review-rating svg {
+  flex-shrink: 0;
+}
+
+.review-text {
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+  font-style: italic;
+}
+
+.review-author-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0f766e;
+}
+
+@media (min-width: 480px) {
+  .reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .reviews-section {
+    padding: 3.5rem 0;
+  }
+
+  .reviews-section-title {
+    font-size: 2rem;
+  }
+
+  .reviews-section-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .reviews-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+
+  .review-card {
+    padding: 1.75rem;
+    border-radius: 14px;
+  }
+
+  .review-text {
+    font-size: 0.95rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .reviews-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+}

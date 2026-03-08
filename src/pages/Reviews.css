@@ -1,0 +1,109 @@
+.reviews-page {
+  min-height: 60vh;
+  background: #f8fafc;
+  padding: 2rem 0 3rem;
+}
+
+.reviews-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.reviews-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #0f766e;
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.reviews-back-link:hover {
+  text-decoration: underline;
+}
+
+.reviews-page-title {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.5rem;
+  text-align: center;
+}
+
+.reviews-page-subtitle {
+  font-size: 1rem;
+  color: #64748b;
+  margin: 0 0 2rem;
+  text-align: center;
+}
+
+.reviews-page-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.reviews-page-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  position: relative;
+}
+
+.reviews-page-quote {
+  color: #0f766e;
+  opacity: 0.4;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.reviews-page-rating {
+  display: flex;
+  gap: 0.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.reviews-page-text {
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+  font-style: italic;
+}
+
+.reviews-page-author {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0f766e;
+}
+
+@media (min-width: 480px) {
+  .reviews-page-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .reviews-page-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+
+  .reviews-page-card {
+    padding: 1.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .reviews-page-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+}

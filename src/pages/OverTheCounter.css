@@ -1,0 +1,365 @@
+/* Over The Counter page – full width, same style as Prescription Drugs */
+.otc-page {
+  min-height: 60vh;
+  background: #f8fafc;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.otc-wrap {
+  width: 94%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Hero */
+.otc-hero {
+  background: linear-gradient(135deg, #0e7490 0%, #06b6d4 40%, #22d3ee 100%);
+  color: #fff;
+  padding: 3.5rem 0 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.otc-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.otc-hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.otc-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 0.75rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+}
+
+.otc-hero .otc-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 0.75rem;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.otc-hero .otc-subtitle {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+/* Intro */
+.otc-intro-section {
+  padding: 2.5rem 0;
+}
+
+.otc-intro-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+}
+
+.otc-intro-lead {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0f172a;
+  line-height: 1.5;
+  margin: 0 0 1.25rem;
+}
+
+.otc-intro-card p {
+  font-size: 1.05rem;
+  color: #475569;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.otc-intro-card a {
+  color: #0e7490;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.otc-intro-card a:hover {
+  text-decoration: underline;
+}
+
+/* Flow */
+.otc-flow {
+  padding: 2rem 0 3rem;
+}
+
+.otc-flow-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.5rem;
+  text-align: center;
+}
+
+.otc-flow-subtitle {
+  font-size: 1.1rem;
+  color: #64748b;
+  margin: 0 0 2.5rem;
+  text-align: center;
+}
+
+.otc-flow-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.otc-flow-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.75rem 1.5rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.otc-flow-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(14, 116, 144, 0.15);
+  border-color: #a5f3fc;
+}
+
+.otc-flow-number {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0e7490;
+  background: #cffafe;
+  border-radius: 50%;
+}
+
+.otc-flow-icon {
+  color: #0e7490;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.otc-flow-card-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 0.5rem;
+}
+
+.otc-flow-card-desc {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.55;
+  margin: 0 0 1rem;
+  flex: 1;
+}
+
+.otc-flow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0e7490;
+  text-decoration: none;
+  margin-top: auto;
+}
+
+.otc-flow-link:hover {
+  text-decoration: underline;
+}
+
+/* Trust */
+.otc-trust {
+  padding: 2rem 0;
+  background: #fff;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.otc-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.otc-trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.otc-trust-item svg {
+  color: #0e7490;
+  flex-shrink: 0;
+}
+
+/* CTA */
+.otc-cta-section {
+  padding: 3rem 0 4rem;
+  background: linear-gradient(180deg, #ecfeff 0%, #e0f2fe 100%);
+}
+
+.otc-cta-inner {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.otc-cta-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.5rem;
+}
+
+.otc-cta-desc {
+  font-size: 1.1rem;
+  color: #475569;
+  margin: 0 0 1.75rem;
+  line-height: 1.5;
+}
+
+.otc-cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.otc-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.75rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.otc-cta-btn.primary {
+  color: #fff;
+  background: #0e7490;
+  box-shadow: 0 4px 14px rgba(14, 116, 144, 0.35);
+}
+
+.otc-cta-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(14, 116, 144, 0.4);
+}
+
+.otc-cta-btn.secondary {
+  color: #0e7490;
+  background: #fff;
+  border: 2px solid #0e7490;
+}
+
+.otc-cta-btn.secondary:hover {
+  background: #ecfeff;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .otc-flow-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .otc-trust-grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .otc-hero {
+    padding: 2.5rem 0 3rem;
+  }
+
+  .otc-flow-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .otc-trust-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .otc-cta-buttons {
+    flex-direction: column;
+  }
+
+  .otc-cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .otc-wrap {
+    padding: 0 1rem;
+  }
+
+  .otc-intro-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .otc-intro-lead {
+    font-size: 1.1rem;
+  }
+
+  .otc-flow-card {
+    padding: 1.5rem 1.25rem;
+  }
+}

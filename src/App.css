@@ -1,0 +1,262 @@
+/* Import theme variables */
+:root {
+  /* Primary colors - Teal and Yellow theme */
+  --color-primary: #017173; /* Teal */
+  --color-secondary: #FDE047; /* Yellow */
+  --color-accent: #015A5C; /* Darker teal */
+  
+  /* Text colors */
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #4A4A4A;
+  --color-text-light: #6B7280;
+  --color-text-white: #FFFFFF;
+  
+  /* Background colors */
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F8FAFC;
+  --color-bg-tertiary: #F1F5F9;
+  --color-bg-dark: #1A1A1A;
+  
+  /* Status colors */
+  --color-success: #017173; /* Teal */
+  --color-warning: #FDE047; /* Yellow */
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+  
+  /* Pharmaceutical specific */
+  --color-prescription: #DC2626;
+  --color-otc: #017173; /* Teal */
+  --color-supplement: #FDE047; /* Yellow */
+  --color-equipment: #015A5C; /* Dark teal */
+  --color-generic: #FDE047; /* Yellow */
+  --color-brand: #017173; /* Teal */
+  
+  /* Healthcare specific */
+  --color-doctor: #017173; /* Teal */
+  --color-pharmacy: #FDE047; /* Yellow */
+  --color-emergency: #EF4444;
+  --color-insurance: #015A5C; /* Dark teal */
+  --color-delivery: #FDE047; /* Yellow */
+  
+  /* Border and shadow */
+  --color-border: #E5E7EB;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 50%;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  position: relative;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Prevent images and media from causing overflow */
+img,
+video,
+iframe,
+embed,
+object {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent tables from causing overflow */
+table {
+  max-width: 100%;
+  table-layout: auto;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  min-height: calc(100vh - 140px); /* Adjust based on header/footer height */
+}
+
+/* Global button styles */
+button {
+  font-family: inherit;
+}
+
+/* Global link styles */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Global input styles */
+input, select, textarea {
+  font-family: inherit;
+}
+
+/* Consistent spacing and alignment */
+.section {
+  padding: 4rem 0;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #1f2937;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Responsive buttons - Starting from 300px */
+@media (max-width: 599px) {
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .btn {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 374px) {
+  .btn {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-text-white);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background: var(--color-primary);
+  color: var(--color-text-white);
+}
+
+/* Container - Consistent across all pages - SINGLE DEFINITION */
+/* Mobile First - Starting from 300px */
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding-left: 12px;
+  padding-right: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Small Mobile (≥375px) */
+@media (min-width: 375px) {
+  .container {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+/* Mobile (≥480px) */
+@media (min-width: 480px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* Tablet (768px - 1199px) */
+@media (min-width: 768px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* Desktop (≥1200px) */
+@media (min-width: 1200px) {
+  .container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
