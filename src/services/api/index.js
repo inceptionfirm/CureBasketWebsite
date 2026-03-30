@@ -246,6 +246,18 @@ class ApiService extends BaseApiService {
   async buyCartApi() {
     return this.cart.buyCart();
   }
+
+  async getAllCartOrdersApi() {
+    return this.cart.getAllCartOrders();
+  }
+
+  async searchCartOrdersApi(orderId) {
+    return this.cart.searchCartOrders(orderId);
+  }
+
+  async markCartOrderShippedApi(orderId) {
+    return this.cart.markCartOrderShipped(orderId);
+  }
 }
 
 // Create singleton instance

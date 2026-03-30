@@ -2,7 +2,9 @@
 import BaseApiService from './base.js';
 import API_CONFIG from './config.js';
 
-const IMAGE_BASE = API_CONFIG.IMAGE_BASE_URL || 'https://java.api.curebasket.com';
+const IMAGE_BASE = API_CONFIG.IMAGE_BASE_URL || 'https://api.curebasket.com';
+
+const PUBLIC = { usePublicToken: true };
 
 class BlogApiService extends BaseApiService {
   /**
@@ -18,7 +20,7 @@ class BlogApiService extends BaseApiService {
       sortOrder: 'DESC',
       ...params
     };
-    return this.get('/blog/get-all', queryParams);
+    return this.get('/blog/get-all', queryParams, PUBLIC);
   }
 
   /**
@@ -43,7 +45,7 @@ class BlogApiService extends BaseApiService {
    * @returns {Promise} Blog object
    */
   async getBlogById(id) {
-    return this.post(`/blog/get-blog/${id}`);
+    return this.post(`/blog/get-blog/${id}`, {}, PUBLIC);
   }
 
   /**
@@ -70,7 +72,7 @@ class BlogApiService extends BaseApiService {
       }
     });
     
-    return this.post('/blog/add-blog', payload);
+    return this.post('/blog/add-blog', payload, PUBLIC);
   }
 
   /**
@@ -80,7 +82,7 @@ class BlogApiService extends BaseApiService {
    * @returns {Promise} Updated blog object
    */
   async updateBlog(id, blogData) {
-    return this.post(`/blog/update-blog/${id}`, blogData);
+    return this.post(`/blog/update-blog/${id}`, blogData, PUBLIC);
   }
 
   /**
@@ -89,7 +91,7 @@ class BlogApiService extends BaseApiService {
    * @returns {Promise} Success response
    */
   async deleteBlog(id) {
-    return this.post(`/blog/delete/${id}`);
+    return this.post(`/blog/delete/${id}`, {}, PUBLIC);
   }
 }
 

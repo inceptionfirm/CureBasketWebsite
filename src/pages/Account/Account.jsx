@@ -1,7 +1,7 @@
 // Customer Account Page - Everything in one place (Profile + Cart + Orders)
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { User, ShoppingCart, FileText, Settings, LogOut, Plus, Minus, Trash2 } from 'lucide-react';
+import { User, ShoppingCart, FileText, Settings, LogOut, Plus, Minus, Trash2, Package, Search, Truck } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import apiService from '../../services/api';
 import './Account.css';
@@ -11,6 +11,44 @@ const Account = () => {
   const { state, updateCartItem, removeFromCart, logout } = useApp();
   const { user, isAuthenticated, cart } = state;
   const [activeTab, setActiveTab] = useState('profile');
+  const [orders, setOrders] = useState([]);
+  const [ordersLoading, setOrdersLoading] = useState(false);
+  const [ordersError, setOrdersError] = useState(null);
+  const [orderSearch, setOrderSearch] = useState('');
+
+  const orderRowId = (row) =>
+    row?.orderId ?? row?.itemText5 ?? row?.order_id ?? row?.id ?? '';
+
+  const orderRowStatus = (row) =>
+    row?.orderStatus ?? row?.itemText4 ?? row?.status ?? '—';
+
+  const loadOrders = async (opts = {}) => {
+    setOrdersLoading(true);
+    setOrdersError(null);
+    try {
+      const q = opts.search != null ? String(opts.search).trim() : '';
+      const res = q
+        ? await apiService.searchCartOrdersApi(q)
+        : await apiService.getAllCartOrdersApi();
+      if (res.success && Array.isArray(res.data)) {
+        setOrders(res.data);
+      } else {
+        setOrders([]);
+        setOrdersError(res.error || 'Could not load orders');
+      }
+    } catch (e) {
+      setOrders([]);
+      setOrdersError(e.message || 'Could not load orders');
+    } finally {
+      setOrdersLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isAuthenticated && activeTab === 'orders') {
+      loadOrders();
+    }
+  }, [isAuthenticated, activeTab]);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -80,6 +118,13 @@ const Account = () => {
               >
                 <ShoppingCart size={20} />
                 <span>Cart ({cartItems.length})</span>
+              </button>
+              <button 
+                className={`nav-item ${activeTab === 'orders' ? 'active' : ''}`}
+                onClick={() => setActiveTab('orders')}
+              >
+                <Package size={20} />
+                <span>Orders</span>
               </button>
               <button 
                 className={`nav-item ${activeTab === 'prescriptions' ? 'active' : ''}`}
@@ -192,6 +237,92 @@ const Account = () => {
                       </button>
                     </div>
                   </>
+                )}
+              </div>
+            )}
+
+            {/* Orders Tab — cart order APIs (/customer/cart/all, search, mark-shipment) */}
+            {activeTab === 'orders' && (
+              <div className="account-section account-orders">
+                <h2>Cart orders</h2>
+                <p className="account-orders-hint">
+                  View and search orders tied to your account. Mark as shipped when your role allows it on the API.
+                </p>
+                <div className="account-orders-toolbar">
+                  <div className="account-orders-search">
+                    <input
+                      type="search"
+                      placeholder="Search by order id…"
+                      value={orderSearch}
+                      onChange={(e) => setOrderSearch(e.target.value)}
+                      onKeyDown={(e) => e.key === 'Enter' && loadOrders({ search: orderSearch })}
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-outline"
+                      disabled={ordersLoading}
+                      onClick={() => loadOrders({ search: orderSearch })}
+                    >
+                      <Search size={18} />
+                      Search
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      disabled={ordersLoading}
+                      onClick={() => { setOrderSearch(''); loadOrders(); }}
+                    >
+                      Show all
+                    </button>
+                  </div>
+                </div>
+                {ordersError && <p className="account-orders-error">{ordersError}</p>}
+                {ordersLoading ? (
+                  <p className="account-orders-loading">Loading orders…</p>
+                ) : orders.length === 0 ? (
+                  <div className="empty-state">
+                    <Package size={48} />
+                    <p>No orders found</p>
+                  </div>
+                ) : (
+                  <div className="account-orders-table-wrap">
+                    <table className="account-orders-table">
+                      <thead>
+                        <tr>
+                          <th>Order ID</th>
+                          <th>Status</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {orders.map((row, idx) => {
+                          const oid = orderRowId(row);
+                          return (
+                            <tr key={oid || idx}>
+                              <td>{oid || '—'}</td>
+                              <td>{orderRowStatus(row)}</td>
+                              <td>
+                                {oid ? (
+                                  <button
+                                    type="button"
+                                    className="btn btn-outline btn-sm"
+                                    onClick={async () => {
+                                      const r = await apiService.markCartOrderShippedApi(oid);
+                                      if (r.success) await loadOrders(orderSearch.trim() ? { search: orderSearch } : {});
+                                      else setOrdersError(r.error || 'Mark shipment failed');
+                                    }}
+                                  >
+                                    <Truck size={16} />
+                                    Mark shipped
+                                  </button>
+                                ) : null}
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
                 )}
               </div>
             )}

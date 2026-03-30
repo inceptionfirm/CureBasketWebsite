@@ -2,6 +2,8 @@
 // Requires Bearer token (PUBLIC_API_TOKEN from apiConfig) for getContactUs POST
 import BaseApiService from './base.js';
 
+const PUBLIC = { usePublicToken: true };
+
 class ContactApiService extends BaseApiService {
   constructor() {
     super();
@@ -15,7 +17,7 @@ class ContactApiService extends BaseApiService {
    */
   async getContactUs() {
     try {
-      const response = await this.post('/metadata/get/contact-us', {});
+      const response = await this.post('/metadata/get/contact-us', {}, PUBLIC);
       if (response.unauthorized || !response.success) {
         return { success: false, data: null, error: response.error || 'Failed to load contact details' };
       }
@@ -60,7 +62,7 @@ class ContactApiService extends BaseApiService {
         subject: payload.subject || '',
         message: payload.message || ''
       };
-      const response = await this.post('/metadata/contact-us/send-mail', body);
+      const response = await this.post('/metadata/contact-us/send-mail', body, PUBLIC);
       if (response.unauthorized || !response.success) {
         return { success: false, error: response.error || 'Failed to send message' };
       }
@@ -89,7 +91,7 @@ class ContactApiService extends BaseApiService {
         address: payload.address || '',
         pincode: payload.pincode != null ? String(payload.pincode) : undefined
       };
-      const response = await this.post('/metadata/configure/contact-us', body);
+      const response = await this.post('/metadata/configure/contact-us', body, PUBLIC);
       if (response.unauthorized || !response.success) {
         return { success: false, error: response.error || 'Failed to update contact details' };
       }

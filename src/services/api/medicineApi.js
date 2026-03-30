@@ -2,7 +2,7 @@
 import BaseApiService from './base.js';
 import API_CONFIG from './config.js';
 
-const IMAGE_BASE = API_CONFIG.IMAGE_BASE_URL || 'https://java.api.curebasket.com';
+const IMAGE_BASE = API_CONFIG.IMAGE_BASE_URL || 'https://api.curebasket.com';
 
 /** Backend MedicineDTO.medicineFaq has { serialId, question, answer }; normalize to { q, question, a, answer } for UI */
 function normalizeMedicineFaq(medicineFaq) {
@@ -15,6 +15,8 @@ function normalizeMedicineFaq(medicineFaq) {
     answer: faq.answer ?? faq.a
   }));
 }
+
+const PUBLIC = { usePublicToken: true };
 
 class MedicineApiService extends BaseApiService {
   /**
@@ -55,7 +57,7 @@ class MedicineApiService extends BaseApiService {
     };
 
     try {
-      const response = await this.get('/medicines/getAllMedicines', queryParams);
+      const response = await this.get('/medicines/getAllMedicines', queryParams, PUBLIC);
 
       // Handle unauthorized response gracefully
       if (response.unauthorized || !response.success) {
@@ -132,7 +134,7 @@ class MedicineApiService extends BaseApiService {
    * @returns {Promise} Medicine object
    */
   async getMedicineById(id) {
-    const response = await this.get(`/medicines/getMedicineById/${id}`);
+    const response = await this.get(`/medicines/getMedicineById/${id}`, {}, PUBLIC);
 
     if (response.success && response.data) {
       return {
@@ -150,7 +152,7 @@ class MedicineApiService extends BaseApiService {
    * @returns {Promise} Created medicine object
    */
   async createMedicine(medicineData) {
-    return this.post('/medicines/createMedicine', medicineData);
+    return this.post('/medicines/createMedicine', medicineData, PUBLIC);
   }
 
   /**
@@ -160,7 +162,7 @@ class MedicineApiService extends BaseApiService {
    * @returns {Promise} Updated medicine object
    */
   async updateMedicine(id, medicineData) {
-    return this.post(`/medicines/updateMedicine/${id}`, medicineData);
+    return this.post(`/medicines/updateMedicine/${id}`, medicineData, PUBLIC);
   }
 
   /**
@@ -169,7 +171,7 @@ class MedicineApiService extends BaseApiService {
    * @returns {Promise} Success response
    */
   async deleteMedicine(id) {
-    return this.get(`/medicines/deleteMedicine/${id}`);
+    return this.get(`/medicines/deleteMedicine/${id}`, {}, PUBLIC);
   }
 
   /**
@@ -177,7 +179,7 @@ class MedicineApiService extends BaseApiService {
    * @returns {Promise} Array of manufacturer names
    */
   async getAllManufacturers() {
-    const response = await this.get('/medicines/getAllManufacturers');
+    const response = await this.get('/medicines/getAllManufacturers', {}, PUBLIC);
 
     if (response.success && response.data) {
       return {
@@ -194,7 +196,7 @@ class MedicineApiService extends BaseApiService {
    * @returns {Promise} Array of medicine form names
    */
   async getAllMedicineForms() {
-    const response = await this.get('/medicines/getAllMedicineForms');
+    const response = await this.get('/medicines/getAllMedicineForms', {}, PUBLIC);
 
     if (response.success && response.data) {
       return {
@@ -249,7 +251,7 @@ class MedicineApiService extends BaseApiService {
 
   /**
    * Transform API medicine object to frontend format
-   * Image URL: https://java.api.curebasket.com{image} when image is a path
+   * Image URL: https://api.curebasket.com{image} when image is a path
    */
   transformMedicine(apiMedicine) {
     const isActive = apiMedicine.status === 'ACTIVE' || apiMedicine.active === true;

@@ -21,7 +21,7 @@ const toFullImageUrl = (path) => {
   if (!path || typeof path !== "string") return null;
   const p = path.trim();
   if (p.startsWith("http://") || p.startsWith("https://")) return p;
-  const base = (IMAGE_BASE_URL || "https://java.api.curebasket.com").replace(/\/$/, "");
+  const base = (IMAGE_BASE_URL || "https://api.curebasket.com").replace(/\/$/, "");
   return `${base}${p.startsWith("/") ? "" : "/"}${p}`;
 };
 

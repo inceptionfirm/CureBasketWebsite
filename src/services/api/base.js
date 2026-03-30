@@ -57,9 +57,11 @@ class BaseApiService {
    * Get request headers.
    * If customHeaders already has Authorization, it is kept (so callers can force public/customer token).
    * If customHeaders['Authorization'] is null, no auth is sent (used by customer-only endpoints when no login token).
-   * Otherwise the in-memory auth token (user or public) is used.
+   * If usePublicToken (ctx): always website PUBLIC_API_TOKEN — use for medicine/category/blog/banner
+   * so logged-in customers do not send their JWT to catalog endpoints.
+   * Otherwise: user token if set, else public token (getAuthToken).
    */
-  getHeaders(customHeaders = {}) {
+  getHeaders(customHeaders = {}, ctx = {}) {
     const headers = {
       ...API_CONFIG.DEFAULT_HEADERS,
       ...customHeaders
@@ -71,6 +73,13 @@ class BaseApiService {
       return headers;
     }
     if (headers['Authorization'] !== undefined) {
+      return headers;
+    }
+    if (ctx.usePublicToken) {
+      const pub = this.tokenManager.getPublicApiKey();
+      if (pub) {
+        headers['Authorization'] = `Bearer ${pub}`;
+      }
       return headers;
     }
     const authToken = this.tokenManager.getAuthToken();
@@ -109,7 +118,9 @@ class BaseApiService {
             unauthorized: true
           };
         }
-        throw new Error(text || `HTTP error! status: ${response.status}`);
+        const err = new Error(text || `HTTP error! status: ${response.status}`);
+        err.status = response.status;
+        throw err;
       }
       // Return text response as data
       return {
@@ -152,14 +163,14 @@ class BaseApiService {
                           data.errorMessage ||
                           data.msg ||
                           `HTTP error! status: ${response.status}`;
-      throw new Error(errorMessage);
+      const err = new Error(errorMessage);
+      err.status = response.status;
+      throw err;
     }
 
-    // Return standardized response
-    // Handle different response formats
     return {
-      success: data.success !== false, // Default to true if not specified
-      data: data.data !== undefined ? data.data : (data.content !== undefined ? data : data),
+      success: data.success !== false,
+      data: data.data !== undefined ? data.data : data,
       message: data.message || data.msg,
       error: data.error || data.errorMessage
     };
@@ -170,20 +181,24 @@ class BaseApiService {
    */
   async request(endpoint, options = {}) {
     const url = this.buildURL(endpoint);
-    const headers = this.getHeaders(options.headers || {});
-    
+    const usePublicToken = options.usePublicToken === true;
+    const { usePublicToken: _omit, headers: headerOverrides = {}, ...restOptions } = options;
+    const headers = this.getHeaders(headerOverrides, { usePublicToken });
+
     const config = {
-      method: options.method || 'GET',
+      ...restOptions,
+      method: options.method || restOptions.method || 'GET',
       headers,
-      ...options
+      // Avoid credentialed cross-origin requests; backend must not mix ACAO * with Allow-Credentials.
+      credentials: restOptions.credentials ?? 'omit',
     };
 
     // Add body for POST/PUT/PATCH requests
-    if (options.body && typeof options.body === 'object' && !(options.body instanceof FormData)) {
-      config.body = JSON.stringify(options.body);
-    } else if (options.body) {
-      config.body = options.body;
-      if (options.body instanceof FormData) {
+    if (config.body && typeof config.body === 'object' && !(config.body instanceof FormData)) {
+      config.body = JSON.stringify(config.body);
+    } else if (config.body) {
+      config.body = config.body;
+      if (config.body instanceof FormData) {
         delete config.headers['Content-Type'];
       }
     }
@@ -193,49 +208,52 @@ class BaseApiService {
   }
 
   /**
-   * GET request
+   * GET request — pass requestOptions.usePublicToken for catalog APIs (medicine, category, blog, banner).
    */
-  async get(endpoint, params = {}) {
+  async get(endpoint, params = {}, requestOptions = {}) {
     const queryString = this.buildQueryString(params);
     const url = queryString ? `${endpoint}${queryString}` : endpoint;
-    return this.request(url, { method: 'GET' });
+    return this.request(url, { method: 'GET', ...requestOptions });
   }
 
   /**
    * POST request
    */
-  async post(endpoint, data = {}) {
+  async post(endpoint, data = {}, requestOptions = {}) {
     return this.request(endpoint, {
+      ...requestOptions,
       method: 'POST',
-      body: data
+      body: data,
     });
   }
 
   /**
    * PUT request
    */
-  async put(endpoint, data = {}) {
+  async put(endpoint, data = {}, requestOptions = {}) {
     return this.request(endpoint, {
+      ...requestOptions,
       method: 'PUT',
-      body: data
+      body: data,
     });
   }
 
   /**
    * PATCH request
    */
-  async patch(endpoint, data = {}) {
+  async patch(endpoint, data = {}, requestOptions = {}) {
     return this.request(endpoint, {
+      ...requestOptions,
       method: 'PATCH',
-      body: data
+      body: data,
     });
   }
 
   /**
    * DELETE request
    */
-  async delete(endpoint) {
-    return this.request(endpoint, { method: 'DELETE' });
+  async delete(endpoint, requestOptions = {}) {
+    return this.request(endpoint, { method: 'DELETE', ...requestOptions });
   }
 }
 

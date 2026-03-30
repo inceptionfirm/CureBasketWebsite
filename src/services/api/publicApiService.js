@@ -1,11 +1,11 @@
 // Public API Service - For website visitors (no auth required)
-// Matches: https://java.api.curebasket.com/backend GET endpoints (Banner, Blog, Medicine, Category)
+// Base URL: https://api.curebasket.com (PUBLIC_API_TOKEN). getHeaders always uses website static token.
 import BaseApiService from './base.js';
 import API_CONFIG from './config.js';
 import apiConfig from '../../config/apiConfig.js';
 import medicineApi from './medicineApi.js';
 
-const IMAGE_BASE = (API_CONFIG.IMAGE_BASE_URL || 'https://java.api.curebasket.com').replace(/\/$/, '');
+const IMAGE_BASE = (API_CONFIG.IMAGE_BASE_URL || 'https://api.curebasket.com').replace(/\/$/, '');
 
 /** Build full image URL – if path is already absolute (http/https) use as-is, else prepend IMAGE_BASE */
 function toFullImageUrl(path) {
@@ -162,7 +162,7 @@ class PublicApiService extends BaseApiService {
   /**
    * Get active categories (public)
    * GET /catalog/categories?itemType=PRODUCT&status=ACTIVE&page=0&pageSize=50&sortBy=ID&sortOrder=ASC
-   * Image: https://java.api.curebasket.com{files[0].docPath}; only state=ACTIVE shown
+   * Image: https://api.curebasket.com{files[0].docPath}; only state=ACTIVE shown
    */
   async getActiveCategories(pageSize = 100) {
     try {
@@ -252,9 +252,9 @@ class PublicApiService extends BaseApiService {
 
   /**
    * Get published blogs (public).
-   * GET /backend/blog/get-all?itemType=BLOG&status=PUBLISHED&page=0&pageSize=100&sortBy=ID&sortOrder=DESC
+   * GET /blog/get-all?itemType=BLOG&status=PUBLISHED&page=0&pageSize=100&sortBy=ID&sortOrder=DESC
    * Fetches all pages if totalRecords > first page content (so all published blogs show).
-   * Image: files[0].docPath → https://java.api.curebasket.com + docPath
+   * Image: files[0].docPath → https://api.curebasket.com + docPath
    */
   async getPublishedBlogs(requestedPageSize = 100) {
     const pageSize = Math.max(Number(requestedPageSize) || 100, 100);

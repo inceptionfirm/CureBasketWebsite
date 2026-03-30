@@ -11,16 +11,28 @@ class AuthApiService extends BaseApiService {
    * @returns {Promise} Response with token and user data
    */
   async login(credentials) {
-    const headers = { ...API_CONFIG.DEFAULT_HEADERS };
+    const headers = { ...API_CONFIG.DEFAULT_HEADERS, Authorization: null };
+    const body = {
+      email: (credentials.email ?? '').trim(),
+      password: credentials.password ?? ''
+    };
+
+    const tryLogin = async (path) =>
+      this.request(path, { method: 'POST', body, headers });
+
     try {
-      const response = await this.request('/auth/login', {
-        method: 'POST',
-        body: {
-          email: (credentials.email ?? '').trim(),
-          password: credentials.password ?? ''
-        },
-        headers
-      });
+      let response;
+      try {
+        response = await tryLogin('/auth/login');
+      } catch (e) {
+        const msg = (e.message || '').toLowerCase();
+        const is404 = e.status === 404 || msg.includes('404') || msg.includes('not found');
+        if (is404) {
+          response = await tryLogin('/customer/login');
+        } else {
+          throw e;
+        }
+      }
 
       if (response.success && response.data) {
         const data = response.data;
@@ -106,20 +118,21 @@ class AuthApiService extends BaseApiService {
       };
     }
 
-    const headers = this.getHeaders();
-    headers['Authorization'] = `Bearer ${publicToken}`;
+    const phone = (signupData.phoneNumber ?? signupData.phone ?? '').trim();
 
     try {
+      // Website static JWT only (same as catalog); never send customer Bearer on signup.
       const response = await this.request('/customer/signup', {
         method: 'POST',
+        usePublicToken: true,
         body: {
-          email: signupData.email ?? '',
-          firstName: signupData.firstName ?? '',
-          lastName: signupData.lastName ?? '',
-          phoneNumber: signupData.phoneNumber ?? '',
+          email: (signupData.email ?? '').trim(),
+          firstName: (signupData.firstName ?? '').trim(),
+          lastName: (signupData.lastName ?? '').trim(),
+          phoneNumber: phone,
+          phone,
           password: signupData.password ?? ''
-        },
-        headers
+        }
       });
 
       if (response.success && response.data) {

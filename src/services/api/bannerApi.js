@@ -2,7 +2,7 @@
 import BaseApiService from './base.js';
 import API_CONFIG from './config.js';
 
-const IMAGE_BASE = API_CONFIG.IMAGE_BASE_URL || 'https://java.api.curebasket.com';
+const IMAGE_BASE = API_CONFIG.IMAGE_BASE_URL || 'https://api.curebasket.com';
 
 /** Parse createDate e.g. "2026-01-16 11:15:02 IST" for sorting (most recent first) */
 function parseBannerDate(dateString) {
@@ -10,6 +10,8 @@ function parseBannerDate(dateString) {
   const clean = String(dateString).replace(/\s*IST\s*$/i, '').trim();
   return new Date(clean) || new Date(0);
 }
+
+const PUBLIC = { usePublicToken: true };
 
 class BannerApiService extends BaseApiService {
   /**
@@ -25,7 +27,7 @@ class BannerApiService extends BaseApiService {
       sortOrder: 'ASC',
       ...params
     };
-    return this.get('/banner/get-all', queryParams);
+    return this.get('/banner/get-all', queryParams, PUBLIC);
   }
 
   /**
@@ -72,7 +74,7 @@ class BannerApiService extends BaseApiService {
    * @returns {Promise} Banner object
    */
   async getBannerById(id) {
-    return this.post(`/banner/get-banner/${id}`);
+    return this.post(`/banner/get-banner/${id}`, {}, PUBLIC);
   }
 
   /**
@@ -99,7 +101,7 @@ class BannerApiService extends BaseApiService {
       }
     });
     
-    return this.post('/banner/add-banner', payload);
+    return this.post('/banner/add-banner', payload, PUBLIC);
   }
 
   /**
@@ -109,7 +111,7 @@ class BannerApiService extends BaseApiService {
    * @returns {Promise} Updated banner object
    */
   async updateBanner(id, bannerData) {
-    return this.post(`/banner/update-banner/${id}`, bannerData);
+    return this.post(`/banner/update-banner/${id}`, bannerData, PUBLIC);
   }
 
   /**
@@ -118,7 +120,7 @@ class BannerApiService extends BaseApiService {
    * @returns {Promise} Success response
    */
   async deleteBanner(id) {
-    return this.post(`/banner/delete/${id}`);
+    return this.post(`/banner/delete/${id}`, {}, PUBLIC);
   }
 }
 

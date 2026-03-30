@@ -2,12 +2,14 @@
 import BaseApiService from './base.js';
 import API_CONFIG from './config.js';
 
-const IMAGE_BASE = API_CONFIG.IMAGE_BASE_URL || 'https://java.api.curebasket.com';
+const IMAGE_BASE = API_CONFIG.IMAGE_BASE_URL || 'https://api.curebasket.com';
 
 function imageUrlFromFiles(files) {
   const path = files?.[0]?.docPath;
   return path ? `${IMAGE_BASE}${path}` : null;
 }
+
+const PUBLIC = { usePublicToken: true };
 
 class CategoryApiService extends BaseApiService {
   /**
@@ -26,7 +28,7 @@ class CategoryApiService extends BaseApiService {
         sortOrder: 'ASC',
         ...params
       };
-      const response = await this.get('/catalog/categories', queryParams);
+      const response = await this.get('/catalog/categories', queryParams, PUBLIC);
       if (response.unauthorized || !response.success) {
         return { success: true, data: { categories: [], pagination: {} } };
       }
@@ -58,7 +60,7 @@ class CategoryApiService extends BaseApiService {
    * @returns {Promise} Category object
    */
   async getCategoryById(id) {
-    return this.get(`/catalog/categories/${id}`);
+    return this.get(`/catalog/categories/${id}`, {}, PUBLIC);
   }
 
   /**
@@ -67,7 +69,7 @@ class CategoryApiService extends BaseApiService {
    * @returns {Promise} Created category object
    */
   async createCategory(categoryData) {
-    return this.post('/catalog/add-category', categoryData);
+    return this.post('/catalog/add-category', categoryData, PUBLIC);
   }
 
   /**
@@ -77,7 +79,7 @@ class CategoryApiService extends BaseApiService {
    * @returns {Promise} Updated category object
    */
   async updateCategory(id, categoryData) {
-    return this.post(`/catalog/update-category/${id}`, categoryData);
+    return this.post(`/catalog/update-category/${id}`, categoryData, PUBLIC);
   }
 
   /**
@@ -86,7 +88,7 @@ class CategoryApiService extends BaseApiService {
    * @returns {Promise} Success response
    */
   async deleteCategory(id) {
-    return this.post(`/catalog/delete-category/${id}`);
+    return this.post(`/catalog/delete-category/${id}`, {}, PUBLIC);
   }
 }
 

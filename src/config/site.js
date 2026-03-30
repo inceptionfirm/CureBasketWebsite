@@ -1,4 +1,6 @@
 // Site Configuration - Easy to customize for different clients
+import { API_BASE_URL } from './apiConfig.js';
+
 export const siteConfig = {
   // Basic site information
   name: 'Cure Basket',
@@ -42,7 +44,7 @@ export const siteConfig = {
   
   // API configuration for FlyCanary Admin API
   api: {
-    baseUrl: import.meta.env.VITE_API_BASE_URL || 'https://api.curebasket.com',
+    baseUrl: API_BASE_URL,
     version: import.meta.env.VITE_API_VERSION || 'v1',
     endpoints: {
       auth: '/auth',

@@ -1,11 +1,10 @@
-import apiConfig from '../../config/apiConfig.js';
+import apiConfig, { API_BASE_URL } from '../../config/apiConfig.js';
 
 // API Configuration - Centralized API settings
 export const API_CONFIG = {
-  // Base URL for the backend API
-  BASE_URL: import.meta.env.VITE_API_BASE_URL || 'https://java.api.curebasket.com/backend',
-  // Image base URL (for banner/blog/category/medicine - no /backend)
-  IMAGE_BASE_URL: apiConfig.IMAGE_BASE_URL || 'https://java.api.curebasket.com',
+  BASE_URL: API_BASE_URL,
+  // Image base URL (banner/blog/category/medicine assets)
+  IMAGE_BASE_URL: apiConfig.IMAGE_BASE_URL || 'https://api.curebasket.com',
   
   // API Version (if needed)
   VERSION: import.meta.env.VITE_API_VERSION || '',

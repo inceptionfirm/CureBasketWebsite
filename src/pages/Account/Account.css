@@ -312,6 +312,80 @@
   }
 }
 
+/* Cart orders tab */
+.account-orders-hint {
+  color: var(--color-text-muted, #666);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.account-orders-toolbar {
+  margin-bottom: 1rem;
+}
+
+.account-orders-search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.account-orders-search input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border, #ddd);
+  border-radius: 6px;
+}
+
+.account-orders-search .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.account-orders-error {
+  color: #b91c1c;
+  margin-bottom: 0.75rem;
+}
+
+.account-orders-loading {
+  color: var(--color-text-muted, #666);
+}
+
+.account-orders-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 8px;
+}
+
+.account-orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.account-orders-table th,
+.account-orders-table td {
+  text-align: left;
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid var(--color-border, #eee);
+}
+
+.account-orders-table th {
+  background: var(--color-bg-secondary, #f9fafb);
+  font-weight: 600;
+}
+
+.account-orders-table tr:last-child td {
+  border-bottom: none;
+}
+
+.btn-sm {
+  padding: 0.35rem 0.65rem;
+  font-size: 0.8rem;
+}
+
 /* Desktop (1024px+) */
 @media (min-width: 1024px) {
   .account-header h1 {

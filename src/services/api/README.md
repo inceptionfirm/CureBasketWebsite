@@ -49,10 +49,19 @@ const results = await apiService.searchMedicines('paracetamol', 10);
 
 ## Configuration
 
-Set environment variables in `.env`:
+**Default API base:** **`https://api.curebasket.com`** (signup/login use this host in the Network tab).
+
+**Local dev:** if the browser blocks cross-origin calls, create `.env.local` with `VITE_API_BASE_URL=/api` so requests go through the Vite proxy (`vite.config.js`).
+
+Optional `.env`:
+
 ```
-VITE_API_BASE_URL=https://java.api.curebasket.com/backend
+# Force full URL in dev (only if API CORS is fixed)
+# VITE_API_BASE_URL=https://api.curebasket.com
+VITE_PUBLIC_API_KEY=<website static JWT>
 ```
+
+Catalog calls (medicine, category, blog, banner) use **`usePublicToken: true`**. Cart, cart-order endpoints (`/customer/cart/all`, `search`, `mark-shipment`), and prescriptions use the **customer** JWT when logged in.
 
 ## Token Management
 

@@ -12,12 +12,15 @@
  * - POST /customer/cart/update/{cartItemId}?quantity=  → update quantity only
  * - POST /customer/cart/delete/{cartItemId}   → remove item
  * - POST /customer/cart/buy                   → place order from cart (customer from Bearer token)
+ * - GET  /customer/cart/all                    → all cart orders
+ * - GET  /customer/cart/search?orderId=       → search orders by order id
+ * - POST /customer/cart/mark-shipment/{orderId} → mark order as shipped (role-dependent on API)
  */
 
 import BaseApiService from './base.js';
 import API_CONFIG from './config.js';
 
-const IMAGE_BASE = (API_CONFIG.IMAGE_BASE_URL || 'https://java.api.curebasket.com').replace(/\/$/, '');
+const IMAGE_BASE = (API_CONFIG.IMAGE_BASE_URL || 'https://api.curebasket.com').replace(/\/$/, '');
 
 /** Build full image URL for medicine.image path */
 function toFullImageUrl(path) {
@@ -59,6 +62,18 @@ function cartResponseToItems(cartList) {
  * Merge cart items by medicineId so same medicine shows once with total quantity.
  * Returns { merged: items with one row per medicineId, duplicateIds: cart line ids to remove on backend }.
  */
+/** Normalize list payload from cart/order APIs */
+export function normalizeCartOrderList(raw) {
+  if (raw == null) return [];
+  if (Array.isArray(raw)) return raw;
+  if (typeof raw !== 'object') return [];
+  if (Array.isArray(raw.content)) return raw.content;
+  if (Array.isArray(raw.orders)) return raw.orders;
+  if (Array.isArray(raw.cartOrders)) return raw.cartOrders;
+  if (Array.isArray(raw.data)) return raw.data;
+  return [];
+}
+
 export function mergeCartByMedicineId(items) {
   if (!items || !Array.isArray(items) || items.length === 0) {
     return { merged: [], duplicateIds: [] };
@@ -201,6 +216,70 @@ class CartApiService extends BaseApiService {
       });
       if (response.unauthorized || !response.success) {
         return { success: false, error: response.error || 'Failed to place order' };
+      }
+      return { success: true, data: response.data, message: response.message };
+    } catch (e) {
+      return { success: false, error: e.message };
+    }
+  }
+
+  /**
+   * GET /customer/cart/all — all cart orders for the authenticated customer (or role).
+   */
+  async getAllCartOrders() {
+    try {
+      const response = await this.request('/customer/cart/all', {
+        method: 'GET',
+        headers: this.customerAuthHeaders()
+      });
+      if (response.unauthorized || !response.success) {
+        return { success: false, data: [], error: response.error || 'Unauthorized' };
+      }
+      const list = normalizeCartOrderList(response.data);
+      return { success: true, data: list, raw: response.data };
+    } catch (e) {
+      return { success: false, data: [], error: e.message };
+    }
+  }
+
+  /**
+   * GET /customer/cart/search?orderId=
+   */
+  async searchCartOrders(orderId) {
+    if (orderId == null || String(orderId).trim() === '') {
+      return { success: false, data: [], error: 'orderId required' };
+    }
+    const qs = this.buildQueryString({ orderId: String(orderId).trim() });
+    try {
+      const response = await this.request(`/customer/cart/search${qs}`, {
+        method: 'GET',
+        headers: this.customerAuthHeaders()
+      });
+      if (response.unauthorized || !response.success) {
+        return { success: false, data: [], error: response.error || 'Search failed' };
+      }
+      const list = normalizeCartOrderList(response.data);
+      return { success: true, data: list, raw: response.data };
+    } catch (e) {
+      return { success: false, data: [], error: e.message };
+    }
+  }
+
+  /**
+   * POST /customer/cart/mark-shipment/{orderId}
+   */
+  async markCartOrderShipped(orderId) {
+    if (orderId == null || String(orderId).trim() === '') {
+      return { success: false, error: 'orderId required' };
+    }
+    const id = encodeURIComponent(String(orderId).trim());
+    try {
+      const response = await this.request(`/customer/cart/mark-shipment/${id}`, {
+        method: 'POST',
+        headers: this.customerAuthHeaders()
+      });
+      if (response.unauthorized || !response.success) {
+        return { success: false, error: response.error || 'Failed to update shipment' };
       }
       return { success: true, data: response.data, message: response.message };
     } catch (e) {

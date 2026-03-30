@@ -264,7 +264,7 @@ const Cart = () => {
 
             <div className="checkout-actions">
               <Link to="/checkout" className="btn btn-primary btn-large">
-                Proceed to Checkout
+                Confirm Order
               </Link>
               <Link to="/products" className="btn btn-secondary">
                 Continue Shopping
@@ -281,15 +281,15 @@ const Cart = () => {
             <div className="security-badges">
               <div className="security-badge">
                 <span>🔒</span>
-                <span>Secure Checkout</span>
+                <span>Admin approval required</span>
               </div>
               <div className="security-badge">
-                <span>💳</span>
-                <span>Multiple Payment Options</span>
+                <span>📧</span>
+                <span>Details sent to your email</span>
               </div>
               <div className="security-badge">
                 <span>↩️</span>
-                <span>Easy Returns</span>
+                <span>No payment gateway for now</span>
               </div>
             </div>
           </div>

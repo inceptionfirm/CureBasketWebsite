@@ -1,6 +1,7 @@
 // API Diagnostics - Check authentication status
 // Run this in browser console: window.checkApiAuth()
 import tokenManager from '../services/api/tokenManager.js';
+import { API_BASE_URL } from '../config/apiConfig.js';
 
 export const checkApiAuth = () => {
   console.log('🔍 API Authentication Diagnostics (In-Memory Token Manager)');
@@ -14,7 +15,7 @@ export const checkApiAuth = () => {
   console.log('   - Active Auth Token:', status.hasAuth ? `✅ ${status.authToken}` : '❌ None');
   
   // Check API base URL
-  const baseUrl = import.meta.env.VITE_API_BASE_URL || 'https://java.api.curebasket.com/backend';
+  const baseUrl = API_BASE_URL;
   console.log('');
   console.log('📋 API Configuration:');
   console.log('   - Base URL:', baseUrl);
